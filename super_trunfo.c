@@ -4,8 +4,9 @@
 //criando as variáveis
 int pontos_turisticos1, pontos_turisticos2;
 unsigned long int populacao1, populacao2;
-float area1, area2, pib1, pib2, densidade1, densidade2, pib_capta1, pib_capta2, super_poder1, super_poder2;
+float area1, area2, densidade1, densidade2, pib_capta1, pib_capta2, super_poder1, super_poder2;
 char estado1, estado2, codigo1[4], codigo2[4], nome_cidade1[20], nome_cidade2[20];
+double pib1, pib2;
 
 float densidade_populacional1() {
     densidade1 = (double)populacao1 / area1;
@@ -52,7 +53,7 @@ int main (){
     scanf("%f", &area1);
 
     printf("Insira o PIB: ");
-    scanf("%f", &pib1);
+    scanf("%lf", &pib1);
 
     printf("Insira o Número de Pontos Turísticos: ");
     scanf("%d", &pontos_turisticos1);
@@ -82,7 +83,7 @@ int main (){
     scanf("%f", &area2);
 
     printf("Insira o PIB: ");
-    scanf("%f", &pib2);
+    scanf("%lf", &pib2);
 
     printf("Insira o Número de Pontos Turísticos: ");
     scanf("%d", &pontos_turisticos2);
@@ -93,24 +94,78 @@ int main (){
     pib_per_capta2();
 
     //calculando o super poder das cartas
-    super_poder1 = (double)populacao1 + (double)area1 + (double)pib1 + (double)pontos_turisticos1 + (double)pib_capta1 + (double)(1.0 / densidade1);
-    super_poder2 = (double)populacao2 + (double)area2 + (double)pib2 + (double)pontos_turisticos2 + (double)pib_capta2 + (double)(1.0 / densidade2);
+    super_poder1 = (double)populacao1 + (double)area1 + pib1 + (double)pontos_turisticos1 + (double)pib_capta1 + (double)(1.0 / densidade1);
+    super_poder2 = (double)populacao2 + (double)area2 + pib2 + (double)pontos_turisticos2 + (double)pib_capta2 + (double)(1.0 / densidade2);
 
     //exibindo as informações das cartas
     printf("\nAgora vamos exibir as informações das cartas!\n");
     printf("\nCarta 1:\n");
-    printf("\nEstado: %c\nCódigo: %s\nNome da Cidade: %s\nPopulação: %lu habitantes\nÁrea: %.2f km²\nPIB: %.2f bilhões de reais\nPontos Turísticos: %d\nDensidade Populacional: %.2f hab/km²\nPIB per Capita: %.2f reais\nSuper Poder da Carta: %.2f\n", estado1, codigo1, nome_cidade1, populacao1, area1, pib1, pontos_turisticos1, densidade1, pib_capta1, super_poder1);
+    printf("\nEstado: %c\n"
+        "Código: %s\n"
+        "Nome da Cidade: %s\n"
+        "População: %lu habitantes\n"
+        "Área: %.2f km²\n"
+        "PIB: %.2lf reais\n"
+        "Pontos Turísticos: %d\n"
+        "Densidade Populacional: %.2f hab/km²\n"
+        "PIB per Capita: %.2f reais\n"
+        "Super Poder da Carta: %.2f\n",
+        estado1, codigo1, nome_cidade1, populacao1, area1, pib1, pontos_turisticos1, densidade1, pib_capta1, super_poder1);
 
     printf("\nCarta 2:\n");
-    printf("\nEstado: %c\nCódigo: %s\nNome da Cidade: %s\nPopulação: %lu habitantes\nÁrea: %.2f km²\nPIB: %.2f bilhões de reais\nPontos Turísticos: %d\nDensidade Populacional: %.2f hab/km²\nPIB per Capita: %.2f reais\nSuper Poder da Carta: %.2f\n", estado2, codigo2, nome_cidade2, populacao2, area2, pib2, pontos_turisticos2, densidade2, pib_capta2, super_poder2);
+    printf("\nEstado: %c\n"
+        "Código: %s\n"
+        "Nome da Cidade: %s\n"
+        "População: %lu habitantes\n"
+        "Área: %.2f km²\n"
+        "PIB: %.2lf reais\n"
+        "Pontos Turísticos: %d\n"
+        "Densidade Populacional: %.2f hab/km²\n"
+        "PIB per Capita: %.2f reais\n"
+        "Super Poder da Carta: %.2f\n",
+        estado2, codigo2, nome_cidade2, populacao2, area2, pib2, pontos_turisticos2, densidade2, pib_capta2, super_poder2);
 
-    //comparando as cartas
-    printf("\nComparação de cartas:\n");
-    printf("\nPopulação: %d\n", populacao1 > populacao2);
-    printf("Área: %d\n", area1 > area2);
-    printf("PIB: %d\n", pib1 > pib2);
-    printf("Pontos Turísticos: %d\n", pontos_turisticos1 > pontos_turisticos2);
-    printf("Densidade Populacional: %d\n", densidade1 < densidade2);
-    printf("PIB per Capita: %d\n", pib_capta1 > pib_capta2);
-    printf("Super Poder: %d\n", super_poder1 > super_poder2);
+    //comparação das cartas
+    printf("\nAgora vamos definir a carta vencedora!\n");
+    if(populacao1 > populacao2) {
+        printf("\nPopulação - %s ganhou com %lu habitantes\n", nome_cidade1, populacao1);
+    } else {
+        printf("\nPopulação - %s ganhou com %lu habitantes\n", nome_cidade2, populacao2);
+    }
+
+    if(area1 > area2) {
+        printf("Área - %s ganhou com %.2f km²\n", nome_cidade1, area1);
+    } else {
+        printf("Área - %s ganhou com %.2f km²\n", nome_cidade2, area2);
+    }
+
+    if(pib1 > pib2) {
+        printf("PIB - %s ganhou com %.2lf reais\n", nome_cidade1, pib1);
+    } else {
+        printf("PIB - %s ganhou com %.2lf reais\n", nome_cidade2, pib2);
+    }
+
+    if(pontos_turisticos1 > pontos_turisticos2) {
+        printf("Pontos Turísticos - %s ganhou com %d pontos turísticos\n", nome_cidade1, pontos_turisticos1);
+    } else {
+        printf("Pontos Turísticos - %s ganhou com %d pontos turísticos\n", nome_cidade2, pontos_turisticos2);
+    }
+
+    if(densidade1 < densidade2) {
+        printf("Densidade Populacional - %s ganhou com %.2lf hab/km²\n", nome_cidade1, densidade1);
+    } else {
+        printf("Densidade Populacional - %s ganhou com %.2lf hab/km²\n", nome_cidade2, densidade2);
+    }
+
+    if(pib_capta1 > pib_capta2) {
+        printf("PIB per Capita - %s ganhou com %.2f reais\n", nome_cidade1, pib_capta1);
+    } else {
+        printf("PIB per Capita - %s ganhou com %.2f reais\n", nome_cidade2, pib_capta2);
+    }
+
+    if(super_poder1 > super_poder2) {
+        printf("Super Poder - %s ganhou com %.2f de poder!\n", nome_cidade1, super_poder1);
+    } else {
+        printf("Super Poder - %s ganhou com %.2f de poder!\n", nome_cidade2, super_poder2);
+    }
 }
