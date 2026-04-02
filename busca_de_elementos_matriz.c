@@ -1,20 +1,32 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#define linha 10
+#define coluna 10
+
 int main() {
 
-    int matriz[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-    int target;
-
-    printf("Digite um número de 1 a 16 para encontrar sua posição na matriz: ");
-    scanf("%d", &target);
-
+    int matriz[linha][coluna];
+    int target, soma = 1;
     bool found = false;
 
-    for(int i = 0; i < 4; i++) {
-        for(int j = 0; j < 4; j++) {
+    printf("Digite um número de 1 a 100 para encontrar seu índice na matriz: ");
+    scanf("%d", &target);
+
+    for(int i = 0; i < linha; i++) {
+        for(int j = 0; j < coluna; j++) {
+            matriz[i][j] = soma;
+            soma++;
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    
+
+    for(int i = 0; i < linha; i++) {
+        for(int j = 0; j < coluna; j++) {
             if(matriz[i][j] == target) {
-                printf("\n%d está na posição %d, %d!\n", target, i, j);
+                printf("\n%d está no índice %d, %d!\n", target, i, j);
                 found = true;
                 break;
             }
