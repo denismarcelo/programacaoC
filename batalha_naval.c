@@ -5,6 +5,13 @@ int main() {
     char linha[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
     int tabuleiro[10][10];
 
+    // imprimindo a primeira linha de letras
+    printf("   ");
+    for(int i = 0; i < 10; i++) {
+        printf("%c ", linha[i]);
+    }
+    printf("\n");
+
     // definindo tudo como 0 (abaixo da primeira linha de letras)
     for(int i = 0; i < 10; i++) {
         for(int j = 0; j < 10; j++) {
@@ -21,13 +28,6 @@ int main() {
     for(int i = 5; i <= 7; i++) {
         tabuleiro[i][7] = 3;
     }
-
-    // imprimindo a primeira linha de letras
-    printf("   ");
-    for(int i = 0; i < 10; i++) {
-        printf("%c ", linha[i]);
-    }
-    printf("\n");
 
     // imprimindo todos os zeros e substituindo a primeira coluna por números de 1 a 10
     for(int i = 0; i < 10; i++) {
